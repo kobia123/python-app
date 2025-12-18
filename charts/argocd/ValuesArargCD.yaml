@@ -1,0 +1,31 @@
+redis-ha:
+  enabled: false
+
+controller:
+  replicas: 1
+
+server:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+
+repoServer:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+
+applicationSet:
+  replicas: 2
+global:
+  domain: localhost
+
+certificate:
+  enabled: true
+
+server:
+  ingress:
+    annotations:
+     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    enabled: true
+    ingressClassName: nginx
+    tls: true

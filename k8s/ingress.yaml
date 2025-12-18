@@ -9,8 +9,10 @@ spec:
       paths:
       - path: /api/v1
         pathType: Prefix
+      - path: /api/v1/healthz    # Add this new block
+        pathType: Prefix
         backend:
           service:
             name: python-app
             port:
-              number: 8080
+              number: 5000
