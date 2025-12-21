@@ -12,7 +12,10 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      
+      - name: Shorten commit ID
+        shell: bash
+        run: |
+         echo "COMMIT_ID=${GITHUB_SHA::6}" >> "$GITHUB_ENV"
       - name: Manual docker login test
         shell: bash
         run: |
@@ -45,4 +48,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: kobia123/python-app:${{ github.sha }}
+          tags: kobia123/python-app:${{ github.COMMIT_ID }}
