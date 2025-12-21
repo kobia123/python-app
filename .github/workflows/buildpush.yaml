@@ -9,14 +9,13 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
-    
-    - name: Debug contexts (masked in logs)
-      run: |
-        echo "vars.DOCKERHUB_USERNAME=[${{ vars.DOCKERHUB_USERNAME }}]"
-        echo "secrets.DOCKERHUB_TOKEN=[${{ secrets.DOCKERHUB_TOKEN }}]"
-
     steps:
       -
+        
+        name: Debug contexts (masked in logs)
+          run: |
+            echo "vars.DOCKERHUB_USERNAME=[${{ vars.DOCKERHUB_USERNAME }}]"
+            echo "secrets.DOCKERHUB_TOKEN=[${{ secrets.DOCKERHUB_TOKEN }}]"
         name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -27,4 +26,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: kobia123/python-app/app:${{ github.sha }}
+          tags: kobia123/python-app/app:${{ github.sha}}
