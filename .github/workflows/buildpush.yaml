@@ -16,7 +16,7 @@ jobs:
       - name: Manual docker login test
         shell: bash
         run: |
-        echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ vars.DOCKERHUB_USERNAME }}" --password-stdin
+         echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ vars.DOCKERHUB_USERNAME }}" --password-stdin
       - name: Checkout
         uses: actions/checkout@v4
       
