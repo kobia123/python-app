@@ -17,7 +17,7 @@ jobs:
       
       - name: Fallback env for username
         env:
-          DOCKERHUB_USERNAME_FALLBACK: kobia123   # החלף לשם המשתמש שלך
+          DOCKERHUB_USERNAME_FALLBACK: kobia123  # החלף לשם המשתמש שלך
         run: |
           echo "[vars.DOCKERHUB_USERNAME] = [${{ vars.DOCKERHUB_USERNAME }}]"
           echo "[env.DOCKERHUB_USERNAME_FALLBACK] = [$DOCKERHUB_USERNAME_FALLBACK]"
