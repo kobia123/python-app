@@ -1,29 +1,37 @@
+
 name: ci
 
 on:
   push:
-   paths:
-     - src/**
-   branches :
-     - main
+    branches:
+      - main
+    paths:
+      - 'src/**'
+
 jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      -
-        
-        name: Debug contexts (masked in logs)
-          run: |
-            echo "vars.DOCKERHUB_USERNAME=[${{ vars.DOCKERHUB_USERNAME }}]"
-            echo "secrets.DOCKERHUB_TOKEN=[${{ secrets.DOCKERHUB_TOKEN }}]"
-        name: Login to Docker Hub
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Debug contexts (masked in logs)
+        run: |
+          echo "vars.DOCKERHUB_USERNAME=[${{ vars.DOCKERHUB_USERNAME }}]"
+          echo "secrets.DOCKERHUB_TOKEN=[${{ secrets.DOCKERHUB_TOKEN }}]"
+
+      - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}      
-      -
-        name: Build and push
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push
         uses: docker/build-push-action@v6
         with:
+          context: .
           push: true
-          tags: kobia123/python-app/app:${{ github.sha}}
+          tags: kobia123/python-app/app:${{ github.sha }}
