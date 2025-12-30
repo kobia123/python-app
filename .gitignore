@@ -1,0 +1,6 @@
+*.crt
+*.cer
+patch*
+final*
+controller*
+*.json

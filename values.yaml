@@ -1,0 +1,15 @@
+template:
+  spec:
+    containers:
+      - name: runner
+        env:
+          - name: SSL_CERT_FILE
+            value: /etc/grid-security/certificates/custom-ca.crt
+        volumeMounts:
+          - name: proxy-cert
+            mountPath: /etc/grid-security/certificates/custom-ca.crt
+            subPath: ca.crt
+    volumes:
+      - name: proxy-cert
+        secret:
+          secretName: proxy-cert-secret
