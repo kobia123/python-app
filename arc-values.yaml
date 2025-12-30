@@ -1,0 +1,17 @@
+config:
+  proxy:
+    httpProxy: "http://192.168.65.1:3128"
+    httpsProxy: "http://192.168.65.1:3128"
+    noProxy: "localhost,127.0.0.1,kubernetes.default.svc,kubernetes.default.svc.cluster.local"
+
+# This forces the manager container specifically
+controller:
+  env:
+    - name: GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY
+      value: "true"
+    - name: HTTPS_PROXY
+      value: "http://192.168.65.1:3128"
+    - name: HTTP_PROXY
+      value: "http://192.168.65.1:3128"
+
+githubConfigSecret: controller-manager-secret
