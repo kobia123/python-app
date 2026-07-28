@@ -1,0 +1,23 @@
+﻿server:
+  replicas: 1
+
+controller:
+  replicas: 1
+
+repoServer:
+  replicas: 1
+
+applicationSet:
+  replicas: 1
+
+redis:
+  enabled: true
+  useHA: false
+
+configs:
+  cm:
+    admin.enabled: true
+    application.instanceLabelKey: argocd.argoproj.io/instance
+
+  params:
+    create: true
