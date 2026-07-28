@@ -10,7 +10,8 @@ app = Flask(__name__)
 def details():
     return jsonify ({ 
         'time': datetime.datetime.now().strftime("%A, %B %d, %Y %H:%M:%S"),
-        'hostname': socket.gethostname()})
+        'hostname': socket.gethostname()
+        'message':'TL You will be mine - KA'})
 
 @app.route('/api/v1/Healthz')
 def health():
