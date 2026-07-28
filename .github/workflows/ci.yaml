@@ -2,10 +2,10 @@ name: ci
 
 on:
   push:
-  paths:
+   paths:
     -src/**
-  branches
-    -master
+   branches:
+    -master 
 jobs:
   docker:
     runs-on: ubuntu-latest
