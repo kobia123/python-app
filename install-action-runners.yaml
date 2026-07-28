@@ -1,0 +1,1 @@
+helm upgrade --install actions-runner-controller actions-runner-controller/actions-runner-controller --namespace actions-runner-system --create-namespace --set authSecret.create=true --set-string authSecret.github_token=your token --set githubConfigUrl=https://github.com --wait
