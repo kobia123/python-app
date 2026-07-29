@@ -21,10 +21,12 @@ service:
 ingress:
   enabled: true
   className: "nginx"
-  annotations: {}
-    # This helps if the app is sensitive to how the path is sent
+  annotations:
+    # מבטל את ההפניה האוטומטית ל-HTTPS כדי שיעבוד חלק ב-HTTP מקומי
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
   hosts:
-    - host: ""
+    - host: "localhost"
       paths:
         - path: /api/v1/info
           pathType: Prefix
@@ -56,5 +58,4 @@ autoscaling:
 volumes: []
 volumeMounts: []
 nodeSelector: {}
-tolerations: []
-affinity: {}
+tolerations: {}
